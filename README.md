@@ -24,7 +24,7 @@ Example Playbook
 ```yml
 hosts: servers
 roles:
-  - lighthouse
+  - lighthouse-role
 ```
 
 License
