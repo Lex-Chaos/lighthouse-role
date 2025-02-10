@@ -21,9 +21,11 @@ Dependencies
 Example Playbook
 ----------------
 
+```yml
 hosts: servers
 roles:
   - lighthouse
+```
 
 License
 -------
