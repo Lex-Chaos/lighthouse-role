@@ -1,0 +1,9 @@
+---
+# handlers file for lighthouse-role
+
+- name: restart-nginx
+  become: true
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+  # become_method: sudo

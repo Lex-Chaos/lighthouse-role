@@ -1,0 +1,20 @@
+galaxy_info:
+  author: a.a.borovik
+  description: Lighouse installatinon
+  company: netology
+
+  license: MIT
+
+  platforms:
+    - name: fedora
+      versions:
+        - 41
+
+  min_ansible_version: 2.17
+
+  galaxy_tags:
+    - lighthouse
+
+dependencies:
+  - git
+  - nginx

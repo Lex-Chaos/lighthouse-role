@@ -1,0 +1,43 @@
+---
+# tasks file for lighthouse-role
+  
+- name: Dependencies for Lighthouse
+  become: true
+  ansible.builtin.yum:
+    name:
+      - git
+      - nginx
+    state: present
+
+# - name: Recursively remove directory
+#   ansible.builtin.file:
+#     path: /var/www/lighthouse
+#     state: absent
+
+- name: Create Lighthouse Directory
+  become: true
+  # become_user: nginx
+  ansible.builtin.file:
+    path: /var/www/lighthouse
+    state: directory
+    recurse: true
+    mode: '0755'
+    owner: nginx
+    group: nginx
+
+- name: Get Source
+  become: true
+  become_user: nginx
+  ansible.builtin.git:
+    repo: "{{ lighthouse_repo }}"
+    version: master
+    force: true
+    dest: /var/www/lighthouse
+
+- name: Create Lighthouse Config
+  become: true
+  ansible.builtin.template:
+    src: templates/lighthouse.conf.j2
+    dest: /etc/nginx/conf.d/default.conf
+    mode: '0644'
+  notify: restart-nginx
